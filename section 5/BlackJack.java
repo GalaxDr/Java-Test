@@ -8,8 +8,13 @@ public class BlackJack {
         System.out.println("\nWelcome to Java Casino!");
         System.out.println("Do you have a knack for Black Jack?");
         System.out.println("We shall see..");
+        System.out.println("Dealer must hit until total is at least 17");
+        System.out.println("Aces count as 1");
+        System.out.println("Black Jack pays 3 to 2");
         System.out.println("..Ready? Press anything to begin!");
         scan.nextLine();
+        System.out.println("\nHow much money do you bet?");
+        double bet = scan.nextDouble();
         int userCard1 = drawRandomCard();
         int userCard2 = drawRandomCard();
         int total = Math.min(userCard1, 10) + Math.min(userCard2, 10);
@@ -48,16 +53,26 @@ public class BlackJack {
         }
         if (dealerTotal > 21) {
                 System.out.println("\nDealer busted! You win!");
+                System.out.println();
+                System.out.println("You win $" + bet*2 + "!");
+                System.exit(0);
+            }
+            if (total == 21 && dealerTotal != 21) {
+                System.out.println("\nBlack Jack! You win!");
+                System.out.println("You win $" + bet*3/2 + "!");
+                System.out.println();
                 System.exit(0);
             }
             if (dealerTotal > total) {
                 System.out.println("\nDealer wins! With a total of " + dealerTotal + " over your total of " + total + "");
                 System.exit(0);
             } else if (dealerTotal == total) {
+                System.out.println("Dealer has " + dealerTotal + " and you have " + total + "");
                 System.out.println("\nTie!");
                 System.exit(0);
             } else {
-                System.out.println("\nYou win!");
+                System.out.println("Dealer has " + dealerTotal + " and you have " + total + "");
+                System.out.println("You win $" + bet*2 + "!");
                 System.exit(0);
             }
 
@@ -126,7 +141,6 @@ public class BlackJack {
             "  | o o |\n" +
             "  |____6|\n";
             case 7: return
-              
             "   _____ \n" +
             "  |7    |\n" +
             "  | o o |\n" +
@@ -134,7 +148,6 @@ public class BlackJack {
             "  | o o |\n" +
             "  |____7|\n";
             case 8: return
-            
             "   _____ \n" +
             "  |8    |\n" +
             "  |o o o|\n" +
@@ -156,28 +169,26 @@ public class BlackJack {
             "  |o o o|\n" +
             "  |___10|\n";
             case 11: return
-
             "   _____\n" +
-            "  |J  ww|\n"+ 
-            "  | o {)|\n"+ 
-            "  |o o% |\n"+ 
-            "  | | % |\n"+ 
-            "  |__%%[|\n";
+            "  |J    |\n"+
+            "  | J   |\n"+
+            "  |     |\n"+
+            "  |  J  |\n"+
+            "  |____J|\n";
             case 12: return
-
             "   _____\n" +
-            "  |Q  ww|\n"+ 
-            "  | o {(|\n"+ 
-            "  |o o%%|\n"+ 
-            "  | |%%%|\n"+ 
-            "  |_%%%O|\n";
-            case 13: return 
+            "  |Q    |\n"+
+            "  | Q   |\n"+
+            "  |     |\n"+
+            "  |  Q  |\n"+
+            "  |____Q|\n";
+            case 13: return
             "   _____\n" +
-            "  |K  WW|\n"+ 
-            "  | o {)|\n"+ 
-            "  |o o%%|\n"+ 
-            "  | |%%%|\n"+ 
-            "  |_%%%>|\n";
+            "  |K    |\n"+
+            "  | K   |\n"+
+            "  |     |\n"+
+            "  |  K  |\n"+
+            "  |____K|\n";
             default: return "null";
         
         }
