@@ -15,14 +15,14 @@ public class BlackJack {
         scan.nextLine();
         System.out.println("\nHow much money do you bet?");
         double bet = scan.nextDouble();
-        int userCard1 = drawRandomCard();
-        int userCard2 = drawRandomCard();
+        int userCard1 = pickRandomCard();
+        int userCard2 = pickRandomCard();
         int total = Math.min(userCard1, 10) + Math.min(userCard2, 10);
-        System.out.println("\n You get a \n" + pickRandomCard(userCard1) + "\n and a \n" + pickRandomCard(userCard2));
+        System.out.println("\n You get a \n" + drawRandomCard(userCard1) + "\n and a \n" + drawRandomCard(userCard2));
         System.out.println("\n Your total is : " + total + "\n");
-        int dealerCard1 = drawRandomCard();
-        int dealerCard2 = drawRandomCard();
-        System.out.println("\n The dealer shows \n" + pickRandomCard(dealerCard1) + "\n and has a card facing down \n" + faceDown());
+        int dealerCard1 = pickRandomCard();
+        int dealerCard2 = pickRandomCard();
+        System.out.println("\n The dealer shows \n" + drawRandomCard(dealerCard1) + "\n and has a card facing down \n" + faceDown());
         int dealerTotal = Math.min(dealerCard1, 10) + Math.min(dealerCard2, 10);
         System.out.println("\n The dealer's total is hidden");
         while (true){
@@ -30,9 +30,9 @@ public class BlackJack {
             if (option.equals("stay")){
                 break;
             }
-            int newCard = drawRandomCard();
+            int newCard = pickRandomCard();
             total = total + Math.min(newCard, 10);
-            System.out.println("\nThis is your card \n" + pickRandomCard(newCard));
+            System.out.println("\nThis is your card \n" + drawRandomCard(newCard));
             System.out.println("\nYour total is now " + total);
             if (total > 21) {
                 System.out.println("\nYou busted! You lose!");
@@ -41,24 +41,24 @@ public class BlackJack {
             
         }
         System.out.println("\nOkay, dealer's turn");
-        System.out.println("\nHis hidden card was \n" + pickRandomCard(dealerCard2));
+        System.out.println("\nHis hidden card was \n" + drawRandomCard(dealerCard2));
         while (dealerTotal < 17 &&
          dealerTotal < total){
-            int newCard = drawRandomCard();
+            int newCard = pickRandomCard();
             dealerTotal = dealerTotal + Math.min(newCard, 10);
-            System.out.println("\nDealer chooses to hit\n" + pickRandomCard(newCard));
+            System.out.println("\nDealer chooses to hit\n" + drawRandomCard(newCard));
             System.out.println("\nDealer's total is now " + dealerTotal);
             System.out.println("Press enter to continue");
             scan.nextLine();
         }
         if (dealerTotal > 21) {
-                System.out.println("\nDealer busted! You win!");
+                System.out.println("\nDealer busted!");
                 System.out.println();
                 System.out.println("You win $" + bet*2 + "!");
                 System.exit(0);
             }
             if (total == 21 && dealerTotal != 21) {
-                System.out.println("\nBlack Jack! You win!");
+                System.out.println("\nBlack Jack!");
                 System.out.println("You win $" + bet*3/2 + "!");
                 System.out.println();
                 System.exit(0);
@@ -91,11 +91,11 @@ public class BlackJack {
         "  |  J  |\n"+
         "  |_____|\n";
     }
-    public static int drawRandomCard() {
+    public static int pickRandomCard() {
         int randomCard = (int) (Math.random() * 13) + 1;
         return randomCard;
     }
-    public static String pickRandomCard(int cardNumber) {
+    public static String drawRandomCard(int cardNumber) {
         
         switch (cardNumber) {
             case 1: return
