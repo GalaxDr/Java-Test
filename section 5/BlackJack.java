@@ -78,8 +78,6 @@ public class BlackJack {
 
         scan.close();
 
-
-
         }
 
     public static String faceDown() {
@@ -204,4 +202,3 @@ public class BlackJack {
         return response;
     }
 }
-
